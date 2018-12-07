@@ -1,1 +1,10 @@
-:host { }
+footer {
+    background-color: #20232A;
+    padding: 2% 0%;
+}
+.footer-copyright {
+    color: #D5D6D2;
+}
+a {
+    color: rgb(64, 113, 228);
+}

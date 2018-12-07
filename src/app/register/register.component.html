@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container">
+			<div class="wrapper">
+        <form (submit)="registerUser($event)">
+          <span class="form-title">
+              Registration
+          </span>
+
+					<div class="wrap-input">
+            <label for="email">E-mail: </label>
+            <input required ngModel name="email" #email="ngModel" type="text" id="email" class="form-control">
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Required E-mail</div>
+          </div>
+
+          <div class="wrap-input">
+            <label for="firstName">First name: </label>
+            <input required ngModel name="firstname" #firstname="ngModel" type="text" id="firstName" class="form-control">
+            <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">Required First name</div>
+          </div>   
+
+          <div class="wrap-input">
+            <label for="lastName">Last name: </label>
+            <input required type="text" id="lastName" class="form-control">
+          </div>
+
+          <div class="wrap-input">
+            <label for="username">User: </label>
+            <input required type="text" id="username" class="form-control">
+          </div>
+
+          <div class="wrap-input">
+            <label for="password">Password: </label>
+            <input required type="password" id="password" class="form-control">
+          </div>
+
+          <div class="wrap-input">
+            <label for="phone">Phone number: </label>
+            <input required type="text" id="phone" class="form-control">
+          </div>
+
+          <div class="container-form-btn">
+            <div class="wrap-form-btn">
+              <div class="form-bgbtn"></div>
+                <button class="form-btn">
+                  Register
+                </button>
+            </div>
+          </div>
+    
+        </form>
+      </div>
+    </div>
+  </div>
+    
+</body>
+</html>

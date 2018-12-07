@@ -1,0 +1,10 @@
+body {
+    height: 800px;
+    font-family: Poppins-Regular, sans-serif;
+    background-image: url("/assets/fitness-background.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

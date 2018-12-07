@@ -1,0 +1,72 @@
+<body>
+	<div class="limiter">
+		<div class="container">
+			<div class="wrapper">
+        <form (submit)="createWorkout($event)" class="createWorkoutForm">
+          <span class="form-title">
+              Create workout
+          </span>
+
+          <div class="wrap-input">
+            <label for="name">Name: </label>
+            <input required type="text" id="name" class="form-control">
+          </div><br/>
+
+
+          <div class="wrap-input">
+            <label for="duration">Duration: </label>
+            <input required type="text" id="duration" class="form-control" placeholder="minutes">
+          </div><br/>
+
+
+
+          <div class="wrap-input">
+            <label for="capacity">Capacity: </label>
+            <input required type="text" id="capacity" class="form-control">
+          </div><br/>
+
+        
+
+          <div class="wrap-input">
+            <label for="date">Date: </label>
+            <input required type="date" id="date" class="form-control">
+          </div><br/>
+            <!-- <div class='input-group date' id='datetimepicker1'>
+              <input type='text' class="form-control" />
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div> -->
+
+      <!-- <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker1').datetimepicker();
+      });
+      </script> -->
+
+
+          <div class="wrap-input">
+            <label for="time">Time: </label>
+            <input required type="text" id="time" class="form-control" placeholder="HH:mm">
+          </div><br/>
+
+          <div class="wrap-input">
+            <label for="trainer">Trainer: </label>
+            <input required type="text" id="trainer" class="form-control">
+          </div><br/>
+
+          <div class="container-form-btn">
+            <div class="wrap-form-btn">
+              <div class="form-bgbtn"></div>
+              <button class="form-btn">
+                  Save workout
+              </button>
+            </div>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>

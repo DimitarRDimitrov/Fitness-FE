@@ -1,4 +1,16 @@
 .navbar
 {
     border-radius: 0px;
+    margin: 0;
+}
+.navbar-nav>li>a {
+    color:#D5D6D2;
+}
+.container-fluid{
+    background-color: #3a5199;
+}
+.navbar-nav>li>a:hover, .navbar-nav>li>a:active, .navbar-nav>li>a:focus {
+    background-color:#20232A;
+    border-radius: 5px;
+    color: #fff;
 }
