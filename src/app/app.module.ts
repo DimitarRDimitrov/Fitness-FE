@@ -8,17 +8,22 @@ import { WorkoutServiceService } from './workout-service/workout-service.service
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './auth.service';
 import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CreateWorkoutComponent } from './create-workout/create-workout.component';
 import { AuthInterceptor } from './auth-interceptor';
 import { AdminGuardService } from './admin-guard.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import {
+  ToastrModule,
+} from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FindComponent } from './find/find.component';
+ 
 
 @NgModule({
   declarations: [
@@ -27,35 +32,44 @@ import { ContactsComponent } from './contacts/contacts.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    AdminComponent,
     HomeComponent,
     RegisterComponent,
     CreateWorkoutComponent,
     ProfileComponent,
-    ContactsComponent
+    ContactsComponent,
+    FindComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       {
         path: '',
         children: [
-          { path: 'admin', component: AdminComponent},
           { path: 'contacts', component: ContactsComponent},
           { path: 'profile', component: ProfileComponent},
           { path: 'workouts', component: WorkoutComponent},
           { path: 'workouts/create',
             component: CreateWorkoutComponent,
-            canActivate: [AdminGuardService]}
+            canActivate: [AdminGuardService]},
+          { path: 'find',
+          component: FindComponent,
+          canActivate: [AdminGuardService]}
         ],
         component: HomeComponent
       }
-    ])
+    ]),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [WorkoutServiceService, AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

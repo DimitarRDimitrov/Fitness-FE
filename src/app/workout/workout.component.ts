@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { WorkoutServiceService } from '../workout-service/workout-service.service';
 import { Workout } from '../workout-service/workout';
 import { AuthService } from '../auth.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { User } from '../user';
 
 @Component({
   selector: 'app-workout',
@@ -9,23 +11,43 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./workout.component.css']
 })
 export class WorkoutComponent implements OnInit {
-  
-  workouts: Workout[];
-  authenticated: boolean;
 
-  constructor(private workoutService: WorkoutServiceService, private authService: AuthService) {
+  workouts: Workout[];
+  workoutTypeNames: String[];
+  workoutTrainers: User[];
+  authenticated: boolean;
+  typeSelected: string;
+  trainerSelected: string;
+
+  constructor(private workoutService: WorkoutServiceService, private authService: AuthService, private toastr: ToastrService) {
     this.workouts = [];
-    
-   }
+    this.workoutTypeNames = [];
+    this.workoutTrainers = [];
+    this.typeSelected = "default";
+    this.trainerSelected = "default";
+  }
 
   ngOnInit() {
     this.workoutService
-    .getWorkouts()
-    .then(res => res.map(item => this.workouts.push(item)))
-    .catch(res => null);
+      .getWorkouts(true)
+      .then(res => {
+        res.map(
+          item => {
+            this.workouts.push(item);
+            if (!(this.workoutTypeNames.indexOf(item.workoutType.name) > -1)) this.workoutTypeNames.push(item.workoutType.name);
+          });
+        const map = new Map();
+        for (const item of this.workouts) {
+          if (!map.has(item.trainer.userName)) {
+            map.set(item.trainer.userName, true);
+            this.workoutTrainers.push(item.trainer);
+          }
+        }
+      console.log(res)})
+      .catch(res => null);
     this.authService.authenticated.subscribe(data => this.authenticated = data);
-    console.log(this.authenticated);
-  } 
+  }
+
 
   savePlace(workoutId: number) {
     this.workoutService.savePlace(workoutId)
@@ -33,8 +55,14 @@ export class WorkoutComponent implements OnInit {
         if (data == true) {
           const currentWorkout = this.workouts.find(e => e.id === workoutId);
           currentWorkout.spaceRemaining = currentWorkout.spaceRemaining - 1;
+        } else {
+          this.showErrorSavePlace();
         }
       })
+  }
+
+  showErrorSavePlace() {
+    this.toastr.error('Please check availability.', 'Error saving place!');
   }
 
   freePlace(workoutId: number) {
@@ -46,5 +74,4 @@ export class WorkoutComponent implements OnInit {
         }
       })
   }
-
 }

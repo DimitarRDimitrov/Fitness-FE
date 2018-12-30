@@ -21,15 +21,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']"><a routerLink="/workouts">Workouts<span class="sr-only">(current)</span></a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/workouts">Workouts<span class="sr-only">(current)</span></a>
+        </li>
         <li [routerLinkActive]="['active']"><a routerLink="/calendar">Calendar</a></li>
         <li [routerLinkActive]="['active']"><a routerLink="/contacts">Contacts</a></li>
         <li *ngIf="admin" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin panel <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/workouts/create">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a routerLink="/workouts/create">Create Workout</a></li>
+            <li><a routerLink="/find">Find participant</a></li>
+            <li><a href="#">Delete workout</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
@@ -42,7 +44,8 @@
         <li><a routerLink="/login">Login</a></li>
       </ul>
       <ul *ngIf="authenticated" class="nav navbar-nav navbar-right">
-        <li [routerLinkActive]="['active']"><a routerLink="/profile">User Profile</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/profile">
+          <span *ngIf="notification" class="glyphicon glyphicon-bell" style="margin-right: 10px"></span>User Profile</a></li>
         <li><a (click)="logoutUser()" routerLink="/">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

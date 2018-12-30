@@ -1,0 +1,14 @@
+.workoutsList{
+    display: inline-block;
+}
+
+.participantsList
+{
+    margin-top: 20px;
+    float: right;
+}
+
+td
+{
+    padding: 6px 12px;
+}

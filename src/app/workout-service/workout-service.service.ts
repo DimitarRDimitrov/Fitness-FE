@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Workout } from './workout';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../user';
 
 @Injectable()
 export class WorkoutServiceService {
@@ -19,8 +20,14 @@ export class WorkoutServiceService {
         .toPromise();
     }
 
-    getWorkouts(): Promise<Workout[]> {
-        let apiUrl = `${this.apiRoot}/workouts/all`
+    getWorkouts(fromToday: boolean): Promise<Workout[]> {
+        let apiUrl = `${this.apiRoot}/workouts/all?startDateNow=${fromToday}`;
+        return this.http.get<Workout[]>(apiUrl)
+        .toPromise();
+    }
+
+    getWorkoutsByUser(): Promise<Workout[]> {
+        let apiUrl = `${this.apiRoot}/workouts/user`
         return this.http.get<Workout[]>(apiUrl)
         .toPromise();
     }
@@ -35,11 +42,14 @@ export class WorkoutServiceService {
         return this.http.post<boolean>(apiUrl, null).toPromise();
     }
 
-    createWorkout(name, duration, capacity, date, time, trainer) {
+    createWorkout(name, workoutType, duration, capacity, date, time, trainerUsername, dateTo) {
         let apiUrl = `${this.apiRoot}/workouts/create`;
-        return this.http.post<boolean>(apiUrl, {name, duration, capacity, date, time, trainer})
-            .subscribe(
-            data => { this.router.navigateByUrl('/') },
-            error => {console.log("FAILED") });
+        return this.http.post<boolean>(apiUrl, {name, workoutType, duration, capacity, date, time, trainerUsername, dateTo})
+        .toPromise().then(any => this.router.navigateByUrl("/workouts"));
+    }
+
+    getWorkoutParticipants(workoutId: number) {
+        let apiUrl = `${this.apiRoot}/workouts/find?workoutId=${workoutId}`;
+        return this.http.get<Set<User>>(apiUrl).toPromise();
     }
 }

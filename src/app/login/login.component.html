@@ -8,19 +8,26 @@
 	<div class="limiter">
 		<div class="container">
 			<div class="wrapper">
-				<form (submit)="loginUser($event)">
+				<form (submit)="loginUser()" [formGroup]="loginForm">
 					<span class="form-title">
 						Welcome
 					</span>
 
 					<div class="wrap-input">
-							<label for="username">User: </label>
-							<input required type="text" id="username" class="form-control"><br/>
+						<label for="username">User: </label>
+						<input required type="text" id="username" class="form-control" formControlName="username"><br/>
+						<div class="alert alert-danger" *ngIf="submitted && f.username.errors">
+							<div *ngIf="f.username.errors.required">Username is required</div>
+						</div>
 					</div>
 
 					<div class="wrap-input">
-							<label for="password">Password: </label>
-							<input required type="password" id="password" class="form-control"><br/>
+						<label for="password">Password: </label>
+						<input required type="password" id="password" class="form-control" formControlName="password"><br/>
+						<div class="alert alert-danger" *ngIf="submitted && f.password.errors">
+							<div *ngIf="f.password.errors.required">Password is required</div>
+							<!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
+						</div>
 					</div>
 
 					<div class="container-form-btn">

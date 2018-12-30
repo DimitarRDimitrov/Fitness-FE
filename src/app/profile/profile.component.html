@@ -8,7 +8,21 @@
     <div class="limiter">
       <div class="container">
         <div class="wrapper">
-          <h1>welcome to your ptofile {{user.firstName}} {{user.lastName}}</h1> 
+          <h1>Welcome to your profile {{user?.firstName}} {{user?.lastName}}!</h1> 
+          <br/>
+          <h1>Your upcomming workouts</h1> 
+                <hr/>
+                <div class="row">
+                    <div class="col-md-5" *ngFor="let workout of userWorkouts">
+                        <div class="well hoverwell thumbnail">
+                            <h2>{{workout.name}}  <span *ngIf="workout.deleted" style="background-color: red">Cancelled!</span></h2>
+                            <div>Duration: {{workout.duration}}</div>
+                            <div>Trainer: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
+                            <div>Date: {{workout.date}}</div>
+                            <div>Time: {{workout.time}}</div>
+                        </div>
+                    </div>
+                </div>
         </div>
       </div>
     </div>

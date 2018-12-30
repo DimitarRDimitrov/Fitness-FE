@@ -2,57 +2,80 @@
 	<div class="limiter">
 		<div class="container">
 			<div class="wrapper">
-        <form (submit)="createWorkout($event)" class="createWorkoutForm">
+        <form (submit)="createWorkout()" [formGroup]="createWorkoutForm">
           <span class="form-title">
               Create workout
           </span>
 
           <div class="wrap-input">
             <label for="name">Name: </label>
-            <input required type="text" id="name" class="form-control">
+            <input required type="text" id="name" class="form-control" formControlName="name">
+            <div class="alert alert-danger" *ngIf="submitted && f.name.errors">
+              <div *ngIf="f.name.errors.required">Name is required</div>
+            </div>
           </div><br/>
 
+          <div class="wrap-input">
+            <label for="type">Workout Type:  
+              <select name="type" formControlName="type">
+                <option value="default">---Select workout type---</option>
+                <option *ngFor="let type of workoutTypes" [ngValue]="type">{{type}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="submitted && f.type.errors">
+                <div *ngIf="f.type.errors.required">Type is required</div>
+              </div>
+            </label>
+          </div>
 
           <div class="wrap-input">
             <label for="duration">Duration: </label>
-            <input required type="text" id="duration" class="form-control" placeholder="minutes">
+            <input required type="text" id="duration" class="form-control" placeholder="minutes" formControlName="duration">
+            <div class="alert alert-danger" *ngIf="submitted && f.duration.errors">
+              <div *ngIf="f.duration.errors.required">Duration is required</div>
+            </div>
           </div><br/>
-
-
 
           <div class="wrap-input">
             <label for="capacity">Capacity: </label>
-            <input required type="text" id="capacity" class="form-control">
+            <input required type="text" id="capacity" class="form-control" formControlName="capacity">
+            <div class="alert alert-danger" *ngIf="submitted && f.capacity.errors">
+              <div *ngIf="f.capacity.errors.required">Capacity is required</div>
+            </div>
           </div><br/>
-
-        
-
+   
           <div class="wrap-input">
             <label for="date">Date: </label>
-            <input required type="date" id="date" class="form-control">
+            <input required type="date" id="date" class="form-control" formControlName="date">
+            <div class="alert alert-danger" *ngIf="submitted && f.date.errors">
+              <div *ngIf="f.date.errors.required">Date is required</div>
+            </div>
           </div><br/>
-            <!-- <div class='input-group date' id='datetimepicker1'>
-              <input type='text' class="form-control" />
-              <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-            </div> -->
-
-      <!-- <script type="text/javascript">
-      $(function () {
-        $('#datetimepicker1').datetimepicker();
-      });
-      </script> -->
-
-
+          <div>
+              <label for="recurring">Recurring workout: 
+              <input type="checkbox" id="recurring" #recurring (change)="0" class="form-control"> 
+            </label>
+            </div>
+          <div *ngIf="recurring.checked" class="wrap-input">
+              <label for="date">To Date: </label>
+              <input required type="date" id="dateTo" class="form-control" formControlName="toDate">
+              <div class="alert alert-danger" *ngIf="submitted && f.toDate.errors">
+                <div *ngIf="f.toDate.errors.required">To date is required</div>
+              </div>
+          </div><br/>
           <div class="wrap-input">
             <label for="time">Time: </label>
-            <input required type="text" id="time" class="form-control" placeholder="HH:mm">
+            <input required type="text" id="time" class="form-control" placeholder="HH:mm" formControlName="time">
+            <div class="alert alert-danger" *ngIf="submitted && f.time.errors">
+              <div *ngIf="f.time.errors.required">Time is required</div>
+            </div>
           </div><br/>
 
           <div class="wrap-input">
             <label for="trainer">Trainer: </label>
-            <input required type="text" id="trainer" class="form-control">
+            <input required type="text" id="trainer" class="form-control" formControlName="trainer">
+            <div class="alert alert-danger" *ngIf="submitted && f.trainer.errors">
+              <div *ngIf="f.trainer.errors.required">Trainer username is required</div>
+            </div>
           </div><br/>
 
           <div class="container-form-btn">

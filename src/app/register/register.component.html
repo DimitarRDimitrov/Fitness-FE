@@ -8,41 +8,59 @@
 	<div class="limiter">
 		<div class="container">
 			<div class="wrapper">
-        <form (submit)="registerUser($event)">
+        <form (submit)="registerUser()" [formGroup]="registerForm">
           <span class="form-title">
               Registration
           </span>
 
 					<div class="wrap-input">
             <label for="email">E-mail: </label>
-            <input required ngModel name="email" #email="ngModel" type="text" id="email" class="form-control">
-            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">Required E-mail</div>
+            <input required name="email" type="text" id="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.email.errors">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+            </div>
           </div>
 
           <div class="wrap-input">
             <label for="firstName">First name: </label>
-            <input required ngModel name="firstname" #firstname="ngModel" type="text" id="firstName" class="form-control">
-            <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">Required First name</div>
+            <input required name="firstname" type="text" id="firstName" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.firstName.errors">
+              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
           </div>   
 
           <div class="wrap-input">
             <label for="lastName">Last name: </label>
-            <input required type="text" id="lastName" class="form-control">
+            <input required type="text" id="lastName" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.lastName.errors">
+              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            </div>
           </div>
 
           <div class="wrap-input">
             <label for="username">User: </label>
-            <input required type="text" id="username" class="form-control">
+            <input required type="text" id="username" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.username.errors">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
           </div>
 
           <div class="wrap-input">
             <label for="password">Password: </label>
-            <input required type="password" id="password" class="form-control">
+            <input required type="password" id="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.password.errors">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
+            </div>
           </div>
 
           <div class="wrap-input">
             <label for="phone">Phone number: </label>
-            <input required type="text" id="phone" class="form-control">
+            <input required type="text" id="phone" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+            <div class="alert alert-danger" *ngIf="submitted && f.phone.errors">
+              <div *ngIf="f.phone.errors.required">Fhone number is required</div>
+            </div>
           </div>
 
           <div class="container-form-btn">

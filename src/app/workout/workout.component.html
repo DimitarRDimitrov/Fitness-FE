@@ -9,10 +9,19 @@
         <div class="container">
             <div class="wrapper">
                 <h1>Upcomming workouts</h1> 
+                <select name="type" [(ngModel)]="typeSelected">
+                    <option value="default">---All workouts---</option>
+                    <option *ngFor="let type of workoutTypeNames" [value]="type">{{type}}</option>
+                </select>
+                <select name="trainer" [(ngModel)]="trainerSelected">
+                    <option value="default">---All trainers---</option>
+                    <option *ngFor="let trainer of workoutTrainers" [value]="trainer.userName">{{trainer.firstName}} {{trainer.lastName}}</option>
+                </select>
                 <hr/>
                 <div class="row">
-                    <div class="col-md-5" *ngFor="let workout of workouts">
-                        <div class="well hoverwell thumbnail">
+                    <div *ngFor="let workout of workouts">
+                        <div *ngIf="(typeSelected === 'default' || typeSelected === workout.workoutType.name) 
+                            && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)" class="col-md-5 well hoverwell thumbnail"> 
                             <h2>{{workout.name}}</h2>
                             <div>Duration: {{workout.duration}}</div>
                             <div>Trainer: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>

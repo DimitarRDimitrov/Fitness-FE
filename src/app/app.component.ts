@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
 
     title = 'app';
-
+    
   constructor(private auth: AuthService, private http: HttpClient, private router: Router) {
     // this.auth.authenticate(undefined, undefined);
   }

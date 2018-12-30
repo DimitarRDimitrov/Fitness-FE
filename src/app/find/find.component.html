@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="limiter">
+        <div class="container">
+            <div class="wrapper" >
+                <h1>Workouts for the next 7 days</h1> 
+                <hr/>
+                <table class="workoutsList table-dark">
+                    <thead>
+                        <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Workout</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let workout of workouts">
+                            <td>{{workout.date}} </td>
+                            <td>{{workout.time}} </td>
+                            <td>{{workout.name}} </td>
+                            <td><button class="btn" [ngClass]="workout.id === workoutParticipantsId ? 'active' : ''"  (click)="findParticipants(workout.id)">Check participants</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="participantsList">
+                    <tr *ngFor="let participant of participants">
+                        <td>{{participant?.firstName}} {{participant?.lastName}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
