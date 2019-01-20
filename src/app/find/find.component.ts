@@ -13,10 +13,12 @@ export class FindComponent implements OnInit {
   workouts: Workout[];
   participants: User[];
   workoutParticipantsId: number;
+  clicked: boolean;
 
   constructor(private workoutService: WorkoutServiceService) {
     this.workouts = [];
     this.participants = [];
+    this.clicked = false;
   }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class FindComponent implements OnInit {
   }
 
   findParticipants(workoutId: number) {
+    this.clicked = true;
     this.participants = [];
     this.workoutParticipantsId = workoutId;
     this.workoutService.getWorkoutParticipants(workoutId)

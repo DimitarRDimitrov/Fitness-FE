@@ -2,18 +2,18 @@ import { User } from "../user";
 
 export class Workout {
     public id: number;
-    public name: String;
+    public name: string;
     public duration: number;
     public trainer: any;
-    public date: String;
-    public time: String;
+    public date: string;
+    public time: string;
     public capacity: number;
     public spaceRemaining: number;
     public workoutType: WorkoutType;
     public deleted: boolean;
-    public applicants: Set<User>;
+    public applicants: Array<User>;
 
-    constructor(name: String, duration: number, trainer: String, date: String, time: String, capacity: number, spaceRemaining: number, workoutType: WorkoutType, deleted: boolean, applicants: Set<User>) {
+    constructor(name: string, duration: number, trainer: any, date: string, time: string, capacity: number, spaceRemaining: number, workoutType: WorkoutType, deleted: boolean, applicants: Array<User>) {
         this.name = name;
         this.duration = duration;
         this.trainer = trainer;

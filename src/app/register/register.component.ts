@@ -37,6 +37,10 @@ export class RegisterComponent implements OnInit {
     this.toastr.success('Please Log In!', 'Registration Successful!');
   }
 
+  showError() {
+    this.toastr.error('Please check your details and try again!', 'Registration Failed!');
+  }
+
   registerUser() {
     this.submitted = true;
     // stop here if form is invalid
@@ -56,7 +60,6 @@ export class RegisterComponent implements OnInit {
           this.showSuccess();
           this.router.navigateByUrl('/login');
         },
-        error => { console.log("FAILED") });
-    //console.log(username, password);
+        error => this.showError());
   }
 }

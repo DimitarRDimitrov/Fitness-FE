@@ -23,6 +23,7 @@ import {
 } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FindComponent } from './find/find.component';
+import { DeleteComponent } from './delete/delete.component';
  
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FindComponent } from './find/find.component';
     CreateWorkoutComponent,
     ProfileComponent,
     ContactsComponent,
-    FindComponent
+    FindComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -59,8 +61,11 @@ import { FindComponent } from './find/find.component';
             component: CreateWorkoutComponent,
             canActivate: [AdminGuardService]},
           { path: 'find',
-          component: FindComponent,
-          canActivate: [AdminGuardService]}
+            component: FindComponent,
+            canActivate: [AdminGuardService]},
+          { path: 'delete',
+            component: DeleteComponent,
+            canActivate: [AdminGuardService]}
         ],
         component: HomeComponent
       }

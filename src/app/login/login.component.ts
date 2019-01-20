@@ -47,12 +47,6 @@ export class LoginComponent implements OnInit {
 
   }
   private setSession(authResult) {
-    // const expiresAt = moment().add(authResult.expiresIn,'second');
-
     localStorage.setItem('id_token', authResult);
-    console.log(authResult);
-    // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   } 
-  
-
 }

@@ -58,9 +58,9 @@
           <div class="wrap-input">
             <label for="phone">Phone number: </label>
             <input required type="text" id="phone" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
-            <div class="alert alert-danger" *ngIf="submitted && f.phone.errors">
+            <!-- <div class="alert alert-danger" *ngIf="submitted && f.phone.errors">
               <div *ngIf="f.phone.errors.required">Fhone number is required</div>
-            </div>
+            </div> -->
           </div>
 
           <div class="container-form-btn">

@@ -52,14 +52,14 @@
           </div><br/>
           <div>
               <label for="recurring">Recurring workout: 
-              <input type="checkbox" id="recurring" #recurring (change)="0" class="form-control"> 
-            </label>
+                <input type="checkbox" id="recurring" #recurring (change)="0">
+              </label>
             </div>
           <div *ngIf="recurring.checked" class="wrap-input">
               <label for="date">To Date: </label>
-              <input required type="date" id="dateTo" class="form-control" formControlName="toDate">
-              <div class="alert alert-danger" *ngIf="submitted && f.toDate.errors">
-                <div *ngIf="f.toDate.errors.required">To date is required</div>
+              <input type="date" id="dateTo" class="form-control" formControlName="toDate">
+              <div class="alert alert-danger" *ngIf="recurring.checked && submitted && f.toDate.errors">
+                <div *ngIf="recurring.checked && f.toDate.errors.required">To date is required</div>
               </div>
           </div><br/>
           <div class="wrap-input">

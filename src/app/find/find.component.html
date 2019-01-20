@@ -29,10 +29,13 @@
                     </tbody>
                 </table>
                 <table class="participantsList">
+                    <thead><strong>List of participants</strong></thead>
                     <tr *ngFor="let participant of participants">
                         <td>{{participant?.firstName}} {{participant?.lastName}}</td>
                     </tr>
+                    <div *ngIf="!participants?.length && clicked">No participants!</div>
                 </table>
+                
             </div>
         </div>
     </div>

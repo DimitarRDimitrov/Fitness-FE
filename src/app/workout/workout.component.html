@@ -19,9 +19,9 @@
                 </select>
                 <hr/>
                 <div class="row">
-                    <div *ngFor="let workout of workouts">
+                    <div *ngFor="let workout of workouts"  class="col-md-4">
                         <div *ngIf="(typeSelected === 'default' || typeSelected === workout.workoutType.name) 
-                            && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)" class="col-md-5 well hoverwell thumbnail"> 
+                            && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)" class="well hoverwell thumbnail"> 
                             <h2>{{workout.name}}</h2>
                             <div>Duration: {{workout.duration}}</div>
                             <div>Trainer: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
@@ -29,8 +29,8 @@
                             <div>Time: {{workout.time}}</div>
                             <div>Spaces remainig: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
                             <div *ngIf="authenticated">
-                                <button class="btn btn-primary" (click)="savePlace(workout.id)" *ngIf="workout.spaceRemaining">Save place</button>
-                                <button class="btn btn-primary" (click)="freePlace(workout.id)" *ngIf="workout.spaceRemaining">Free up place</button>
+                                <button class="btn btn-primary" (click)="savePlace(workout.id)" *ngIf="!isUserAppliedForWorkout(workout) && workout.spaceRemaining">Save place</button>
+                                <button class="btn btn-primary" (click)="freePlace(workout.id)" *ngIf="isUserAppliedForWorkout(workout)">Free up place</button>
                             </div>
                         </div>
                     </div>

@@ -52,4 +52,9 @@ export class WorkoutServiceService {
         let apiUrl = `${this.apiRoot}/workouts/find?workoutId=${workoutId}`;
         return this.http.get<Set<User>>(apiUrl).toPromise();
     }
+
+    deleteWorkout(workoutId: number){
+        let apiUrl = `${this.apiRoot}/workouts/delete?workoutId=${workoutId}`;
+        return this.http.post<boolean>(apiUrl, null).toPromise();
+    }
 }
