@@ -10,38 +10,38 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
+        <span class="sr-only">Отвори навигация</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" routerLink="/">Sport Inspiration</a>
+      <a class="navbar-brand" routerLink="/">Спортно Вдъхновение</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-          <a routerLink="/workouts">Workouts<span class="sr-only">(current)</span></a>
+          <a routerLink="/workouts">Тренировки<span class="sr-only">(current)</span></a>
         </li>
-        <li [routerLinkActive]="['active']"><a routerLink="/contacts">Contacts</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/contacts">Контакти</a></li>
         <li *ngIf="admin" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin panel <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Администраторски панел <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/workouts/create">Create Workout</a></li>
-            <li><a routerLink="/find">Find participant</a></li>
-            <li><a routerLink="/delete">Delete workout</a></li>
+            <li><a routerLink="/workouts/create">Създаване на тренировка</a></li>
+            <li><a routerLink="/find">Преглеждане на участници</a></li>
+            <li><a routerLink="/delete">Изтриване на тренировка</a></li>
           </ul>
         </li>
       </ul>
       <ul *ngIf="!authenticated" class="nav navbar-nav navbar-right">
-        <li><a routerLink="/register">Register</a></li>
-        <li><a routerLink="/login">Login</a></li>
+        <li><a routerLink="/register">Регистриране</a></li>
+        <li><a routerLink="/login">Вход</a></li>
       </ul>
       <ul *ngIf="authenticated" class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']"><a routerLink="/profile">
-          <span *ngIf="notification" class="glyphicon glyphicon-bell" style="margin-right: 10px"></span>User Profile</a></li>
-        <li><a (click)="logoutUser()" routerLink="/">Logout</a></li>
+          <span *ngIf="notification" class="glyphicon glyphicon-bell" style="margin-right: 10px"></span>Потребителски акаунт</a></li>
+        <li><a (click)="logoutUser()" routerLink="/">Изход</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

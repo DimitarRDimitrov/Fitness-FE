@@ -10,53 +10,53 @@
 			<div class="wrapper">
         <form (submit)="registerUser()" [formGroup]="registerForm">
           <span class="form-title">
-              Registration
+              Регистрация
           </span>
 
 					<div class="wrap-input">
-            <label for="email">E-mail: </label>
+            <label for="email">Мейл: </label>
             <input required name="email" type="text" id="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.email.errors">
-              <div *ngIf="f.email.errors.required">Email is required</div>
-              <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              <div *ngIf="f.email.errors.required">Мейлът е задължително поле!</div>
+              <div *ngIf="f.email.errors.email">Мейлът трябва да бъде с валиден формат!</div>
             </div>
           </div>
 
           <div class="wrap-input">
-            <label for="firstName">First name: </label>
+            <label for="firstName">Име: </label>
             <input required name="firstname" type="text" id="firstName" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.firstName.errors">
-              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+              <div *ngIf="f.firstName.errors.required">Името е задължително поле!</div>
             </div>
           </div>   
 
           <div class="wrap-input">
-            <label for="lastName">Last name: </label>
+            <label for="lastName">Фамилия: </label>
             <input required type="text" id="lastName" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.lastName.errors">
-              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+              <div *ngIf="f.lastName.errors.required">Фамилията е задължително поле!</div>
             </div>
           </div>
 
           <div class="wrap-input">
-            <label for="username">User: </label>
+            <label for="username">Потребителско име: </label>
             <input required type="text" id="username" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.username.errors">
-              <div *ngIf="f.username.errors.required">Username is required</div>
+              <div *ngIf="f.username.errors.required">Потребителското име е задължително поле!</div>
             </div>
           </div>
 
           <div class="wrap-input">
-            <label for="password">Password: </label>
+            <label for="password">Парола: </label>
             <input required type="password" id="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.password.errors">
-              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.required">Паролата е задължително поле!</div>
               <!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
             </div>
           </div>
 
           <div class="wrap-input">
-            <label for="phone">Phone number: </label>
+            <label for="phone">Телефонен номер: </label>
             <input required type="text" id="phone" class="form-control" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
             <!-- <div class="alert alert-danger" *ngIf="submitted && f.phone.errors">
               <div *ngIf="f.phone.errors.required">Fhone number is required</div>
@@ -67,7 +67,7 @@
             <div class="wrap-form-btn">
               <div class="form-bgbtn"></div>
                 <button class="form-btn">
-                  Register
+                  Регистриране
                 </button>
             </div>
           </div>

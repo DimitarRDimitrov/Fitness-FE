@@ -8,13 +8,13 @@
     <div class="limiter">
         <div class="container">
             <div class="wrapper">
-                <h1>Upcomming workouts</h1> 
+                <h1>Предстоящи тренировки</h1> 
                 <select name="type" [(ngModel)]="typeSelected">
-                    <option value="default">---All workouts---</option>
+                    <option value="default">---Всички---</option>
                     <option *ngFor="let type of workoutTypeNames" [value]="type">{{type}}</option>
                 </select>
                 <select name="trainer" [(ngModel)]="trainerSelected">
-                    <option value="default">---All trainers---</option>
+                    <option value="default">---Всички треньори---</option>
                     <option *ngFor="let trainer of workoutTrainers" [value]="trainer.userName">{{trainer.firstName}} {{trainer.lastName}}</option>
                 </select>
                 <hr/>
@@ -23,11 +23,11 @@
                         <div *ngIf="(typeSelected === 'default' || typeSelected === workout.workoutType.name) 
                             && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)" class="well hoverwell thumbnail"> 
                             <h2>{{workout.name}}</h2>
-                            <div>Duration: {{workout.duration}}</div>
-                            <div>Trainer: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
-                            <div>Date: {{workout.date}}</div>
-                            <div>Time: {{workout.time}}</div>
-                            <div>Spaces remainig: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
+                            <div>Продължителност: {{workout.duration}}</div>
+                            <div>Треньор: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
+                            <div>Дата: {{workout.date}}</div>
+                            <div>Час: {{workout.time}}</div>
+                            <div>Оставащи места: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
                             <div *ngIf="authenticated">
                                 <button class="btn btn-primary" (click)="savePlace(workout.id)" *ngIf="!isUserAppliedForWorkout(workout) && workout.spaceRemaining">Save place</button>
                                 <button class="btn btn-primary" (click)="freePlace(workout.id)" *ngIf="isUserAppliedForWorkout(workout)">Free up place</button>

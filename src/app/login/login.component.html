@@ -10,22 +10,22 @@
 			<div class="wrapper">
 				<form (submit)="loginUser()" [formGroup]="loginForm">
 					<span class="form-title">
-						Welcome
+						Добре дошли
 					</span>
 
 					<div class="wrap-input">
-						<label for="username">User: </label>
+						<label for="username">Потребителско име: </label>
 						<input required type="text" id="username" class="form-control" formControlName="username"><br/>
 						<div class="alert alert-danger" *ngIf="submitted && f.username.errors">
-							<div *ngIf="f.username.errors.required">Username is required</div>
+							<div *ngIf="f.username.errors.required">Потребителското име е задължително поле!</div>
 						</div>
 					</div>
 
 					<div class="wrap-input">
-						<label for="password">Password: </label>
+						<label for="password">Парола: </label>
 						<input required type="password" id="password" class="form-control" formControlName="password"><br/>
 						<div class="alert alert-danger" *ngIf="submitted && f.password.errors">
-							<div *ngIf="f.password.errors.required">Password is required</div>
+							<div *ngIf="f.password.errors.required">Паролата е задължително поле!</div>
 							<!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
 						</div>
 					</div>
@@ -34,18 +34,18 @@
 						<div class="wrap-form-btn">
 							<div class="form-bgbtn"></div>
 							<button class="form-btn">
-								Login
+								Влизане
 							</button>
 						</div>
 					</div>
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Нямате акаунт?
 						</span>
 
 						<a class="txt2" routerLink="/register">
-							Sign Up
+							Регистрация
 						</a>
 					</div>
 				</form>

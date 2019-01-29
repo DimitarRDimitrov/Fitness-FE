@@ -8,14 +8,14 @@
     <div class="limiter">
         <div class="container">
             <div class="wrapper" >
-                <h1>Workouts for the next 7 days</h1> 
+                <h1>Тренировки следващите 7 дни</h1> 
                 <hr/>
                 <table class="workoutsList table-dark">
                     <thead>
                         <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Workout</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Час</th>
+                        <th scope="col">Тренировка</th>
                         <th scope="col"></th>
                         </tr>
                     </thead>
@@ -24,16 +24,16 @@
                             <td>{{workout.date}} </td>
                             <td>{{workout.time}} </td>
                             <td>{{workout.name}} </td>
-                            <td><button class="btn" [ngClass]="workout.id === workoutParticipantsId ? 'active' : ''"  (click)="findParticipants(workout.id)">Check participants</button></td>
+                            <td><button class="btn" [ngClass]="workout.id === workoutParticipantsId ? 'active' : ''"  (click)="findParticipants(workout.id)">Провери участниците</button></td>
                         </tr>
                     </tbody>
                 </table>
                 <table class="participantsList">
-                    <thead><strong>List of participants</strong></thead>
+                    <thead><strong>Списък на участниците</strong></thead>
                     <tr *ngFor="let participant of participants">
                         <td>{{participant?.firstName}} {{participant?.lastName}}</td>
                     </tr>
-                    <div *ngIf="!participants?.length && clicked">No participants!</div>
+                    <div *ngIf="!participants?.length && clicked">Няма участници!</div>
                 </table>
                 
             </div>

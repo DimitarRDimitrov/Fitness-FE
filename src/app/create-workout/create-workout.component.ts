@@ -33,10 +33,22 @@ export class CreateWorkoutComponent implements OnInit {
       duration: ['', Validators.required],
       capacity: ['', Validators.required],
       date: ['', Validators.required],
-      toDate: ['', Validators.required],
+      toDate: [''],
       time: ['', Validators.required],
       trainer: ['', Validators.required]
     });
+  }
+
+  handleValidation(recurring: boolean): void {
+    if (recurring) {
+      //console.log("checked");
+      this.createWorkoutForm.controls.toDate.setValidators(Validators.required);
+    } else {
+      //console.log("unchecked");
+      this.createWorkoutForm.controls.toDate.setValidators(Validators.nullValidator);
+    }
+  
+    this.createWorkoutForm.controls.toDate.updateValueAndValidity();
   }
 
   // convenience getter for easy access to form fields
@@ -48,7 +60,7 @@ export class CreateWorkoutComponent implements OnInit {
     if (this.createWorkoutForm.invalid) {
       return;
     }
-    console.log(this.createWorkoutForm);
+    //console.log(this.createWorkoutForm);
 
     const name = this.createWorkoutForm.get('name').value;
     const type = this.createWorkoutForm.get('type').value;

@@ -8,17 +8,17 @@
     <div class="limiter">
         <div class="container">
             <div class="wrapper">
-                <h1>Crated by trainer <strong>{{this.auth.user.userName}}</strong> workouts</h1> 
+                <h1>Създадени от <strong>{{this.auth.user.userName}}</strong> тренировки</h1> 
                 <div class="row">
                     <div *ngFor="let workout of workouts" class="col-md-4">
                         <div class="well hoverwell thumbnail"> 
-                            <button (click)="deleteWorkout(workout.id)" class="btn btn-primary glyphicon glyphicon-remove">&nbsp;Delete</button>
+                            <button (click)="deleteWorkout(workout.id)" class="btn btn-primary glyphicon glyphicon-remove">&nbsp;Изтрий!</button>
                             <h2>{{workout.name}}</h2>
-                            <div>Duration: {{workout.duration}}</div>
-                            <div>Trainer: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
-                            <div>Date: {{workout.date}}</div>
-                            <div>Time: {{workout.time}}</div>
-                            <div>Spaces remainig: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
+                            <div>Продължителност: {{workout.duration}}</div>
+                            <div>Треньор: {{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</div>
+                            <div>Дата: {{workout.date}}</div>
+                            <div>Час: {{workout.time}}</div>
+                            <div>Оставащи места: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
                         </div>
                     </div>
                 </div>
