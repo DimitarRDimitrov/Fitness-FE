@@ -24,6 +24,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FindComponent } from './find/find.component';
 import { DeleteComponent } from './delete/delete.component';
+import { CreateWorkoutFinalizeComponent } from './create-workout-finalize/create-workout-finalize.component';
  
 
 @NgModule({
@@ -39,7 +40,8 @@ import { DeleteComponent } from './delete/delete.component';
     ProfileComponent,
     ContactsComponent,
     FindComponent,
-    DeleteComponent
+    DeleteComponent,
+    CreateWorkoutFinalizeComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +62,10 @@ import { DeleteComponent } from './delete/delete.component';
           { path: 'workouts/create',
             component: CreateWorkoutComponent,
             canActivate: [AdminGuardService]},
+          { path: 'workouts/create-finalize',
+          component: CreateWorkoutFinalizeComponent,
+           canActivate: [AdminGuardService]
+        },
           { path: 'find',
             component: FindComponent,
             canActivate: [AdminGuardService]},

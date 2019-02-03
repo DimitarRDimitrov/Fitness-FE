@@ -18,7 +18,11 @@ export class WorkoutComponent implements OnInit {
   authenticated: boolean;
   typeSelected: string;
   trainerSelected: string;
-  workoutsApplied: Map<number, boolean>;
+  dateSelected: string;
+  workoutsApplied: Map<number, boolean>;   
+  weekDay: String[] = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+  dayOfWeek: string[];
+    
 
   constructor(private workoutService: WorkoutServiceService, private authService: AuthService, private toastr: ToastrService) {
     this.workouts = [];
@@ -26,6 +30,8 @@ export class WorkoutComponent implements OnInit {
     this.workoutTrainers = [];
     this.typeSelected = "default";
     this.trainerSelected = "default";
+    this.dateSelected = "default"
+    this.dayOfWeek = [];
   }
 
   ngOnInit() {
@@ -35,21 +41,32 @@ export class WorkoutComponent implements OnInit {
         res.map(
           item => {
             this.workouts.push(item);
-
-            if (!(this.workoutTypeNames.indexOf(item.workoutType.name) > -1)) this.workoutTypeNames.push(item.workoutType.name);
+            if (!(this.workoutTypeNames.indexOf(item.workoutType.name) > -1)) {this.workoutTypeNames.push(item.workoutType.name);}
           });
         const map = new Map();
         for (const item of this.workouts) {
+          if (!this.dayOfWeek.includes(item.date)) {
+            this.dayOfWeek.push(item.date);
+          } else {
+            this.dayOfWeek.push("");
+          }
+
           if (!map.has(item.trainer.userName)) {
             map.set(item.trainer.userName, true);
             this.workoutTrainers.push(item.trainer);
           }
-        };
-        console.log(this.workouts)})
+        };})
       .catch(res => null);
     this.authService.authenticated.subscribe(data => this.authenticated = data);
   }
 
+  dayOfWeekAsString(date: string) {
+    if (date) {
+      let newDate = new Date(date);
+      let dayIndex = newDate.getDay();
+      return ["Неделя","Понеделник","Вторник","Сряда","Четвъртък","Петък","Събота"][dayIndex];
+    }
+  }
 
   savePlace(workoutId: number) {
     this.workoutService.savePlace(workoutId)
@@ -84,7 +101,6 @@ export class WorkoutComponent implements OnInit {
     // console.log(this.authService.user);
     for (let usr of workout.applicants) {
       if (usr.userName === this.authService.user.userName) {
-        console.log(true);
         return true;
       }
     }

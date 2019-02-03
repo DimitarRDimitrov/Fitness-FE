@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,7 +22,11 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],//[Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      repeatPassword: ['', [
+        Validators.required,
+        this.matchOtherValidator('password')
+      ]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -30,15 +34,54 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  matchOtherValidator (otherControlName: string) {
+
+    let thisControl: FormControl;
+    let otherControl: FormControl;
+  
+    return function matchOtherValidate (control: FormControl) {
+  
+      if (!control.parent) {
+        return null;
+      }
+  
+      // Initializing the validator.
+      if (!thisControl) {
+        thisControl = control;
+        otherControl = control.parent.get(otherControlName) as FormControl;
+        if (!otherControl) {
+          throw new Error('matchOtherValidator(): other control is not found in parent group');
+        }
+        otherControl.valueChanges.subscribe(() => {
+          thisControl.updateValueAndValidity();
+        });
+      }
+  
+      if (!otherControl) {
+        return null;
+      }
+  
+      if (otherControl.value !== thisControl.value) {
+        return {
+          matchOther: true
+        };
+      }
+  
+      return null;
+  
+    }
+  
+  }
+
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
   showSuccess() {
-    this.toastr.success('Please Log In!', 'Registration Successful!');
+    this.toastr.success('Можете да се впишете!', 'Регистрацията е успешна!');
   }
 
   showError() {
-    this.toastr.error('Please check your details and try again!', 'Registration Failed!');
+    this.toastr.error('Моля проверете детайлите си и опитайте отново!', 'Регистрацията е неуспешна!');
   }
 
   registerUser() {
@@ -57,8 +100,10 @@ export class RegisterComponent implements OnInit {
     this.auth.saveUserDetails(username, password, email, firstName, lastName, phone)
       .subscribe(
         data => {
-          this.showSuccess();
-          this.router.navigateByUrl('/login');
+          if (data){
+            this.showSuccess();
+            this.router.navigateByUrl('/login');
+          } else this.showError();
         },
         error => this.showError());
   }

@@ -1,0 +1,75 @@
+<body>
+    <link href="/assets/calendar-master/style.css" rel="stylesheet">
+
+<div class="limiter">
+    <div class="container" style="position: relative;">
+      <div class="timings">
+        <div> <span> 9:00 </span> AM </div>
+        <div> 9:30 </div>
+        <div> <span> 10:00 </span>AM </div>
+        <div> 10:30 </div>
+        <div> <span> 11:00 </span>AM </div>
+        <div> 11:30 </div>
+        <div> <span> 12:00 </span>PM </div>
+        <div> 12:30 </div>
+        <div> <span> 1:00 </span>PM </div>
+        <div> 1:30 </div>
+        <div> <span> 2:00 </span>PM </div>
+        <div> 2:30 </div>
+        <div> <span> 3:00 </span>PM </div>
+        <div> 3:30 </div>
+        <div> <span> 4:00 </span>PM </div>
+        <div> 4:30 </div>
+        <div> <span> 5:00 </span>PM </div>
+        <div> 5:30 </div>
+        <div> <span> 6:00 </span>PM </div>
+        <div> 6:30 </div>
+        <div> <span> 7:00 </span>PM </div>
+        <div> 7:30 </div>
+        <div> <span> 8:00 </span>PM </div>
+        <div> 8:30 </div>
+        <div> <span> 9:00 </span>PM </div>
+      </div>
+      <div class="days" id="events">
+      </div>
+
+			<div class="wrapper">
+        <form (submit)="createWorkout()" [formGroup]="createWorkoutFinalizeForm">
+          <span class="form-title">
+              Създаване на тренировка в {{this.createWorkoutParent.room.value}}
+          </span>
+   
+          <div class="wrap-input">
+            <label for="time">Време: </label>
+            <input required type="text" id="time" class="form-control" placeholder="HH:mm" formControlName="time">
+            <div class="alert alert-danger" *ngIf="submitted && f.time.errors">
+              <div *ngIf="f.time.errors.required">Времето е задължително поле!</div>
+            </div>
+          </div><br/>
+
+          <div class="wrap-input">
+            <label for="duration">Продължителност: </label>
+            <input required type="text" id="duration" class="form-control" placeholder="minutes" formControlName="duration">
+            <div class="alert alert-danger" *ngIf="submitted && f.duration.errors">
+              <div *ngIf="f.duration.errors.required">Продължителността е задължително поле!</div>
+            </div>
+          </div><br/>
+
+          <div class="container-form-btn">
+            <div class="wrap-form-btn">
+              <div class="form-bgbtn"></div>
+              <button class="form-btn">
+                  Запази Тренировката
+              </button>
+            </div>
+          </div>
+        
+        </form>
+      </div>
+    </div> 
+  </div> 
+ 
+</body>
+
+
+

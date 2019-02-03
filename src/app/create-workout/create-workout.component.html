@@ -28,12 +28,16 @@
           </div>
 
           <div class="wrap-input">
-            <label for="duration">Продължителност: </label>
-            <input required type="text" id="duration" class="form-control" placeholder="minutes" formControlName="duration">
-            <div class="alert alert-danger" *ngIf="submitted && f.duration.errors">
-              <div *ngIf="f.duration.errors.required">Продължителността е задължително поле!</div>
-            </div>
-          </div><br/>
+            <label for="room">Зала:  
+              <select name="room" formControlName="room">
+                <option value="default">---Изберете зала за тренировката---</option>
+                <option *ngFor="let room of rooms" [ngValue]="room">{{room}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="submitted && f.room.errors">
+                <div *ngIf="f.room.errors.required">Залата е задължително поле!</div>
+              </div>
+            </label>
+          </div>
 
           <div class="wrap-input">
             <label for="capacity">Брой трениращи: </label>
@@ -50,7 +54,7 @@
               <div *ngIf="f.date.errors.required">Датата е задължително поле!</div>
             </div>
           </div><br/>
-          <div>
+          <!-- <div>
               <label for="recurring">Повтаряща се тренировка: 
                 <input type="checkbox" id="recurring" #recurring (change)="0" (change)="handleValidation(recurring.checked)">
               </label>
@@ -61,28 +65,21 @@
               <div class="alert alert-danger" *ngIf="recurring.checked && submitted && f.toDate.errors">
                 <div *ngIf="recurring.checked && f.toDate.errors.required">"До дата" е задължително поле!</div>
               </div>
-          </div><br/>
-          <div class="wrap-input">
-            <label for="time">Време: </label>
-            <input required type="text" id="time" class="form-control" placeholder="HH:mm" formControlName="time">
-            <div class="alert alert-danger" *ngIf="submitted && f.time.errors">
-              <div *ngIf="f.time.errors.required">Времето е задължително поле!</div>
-            </div>
-          </div><br/>
+          </div><br/> -->
 
           <div class="wrap-input">
             <label for="trainer">Треньор: </label>
-            <input required type="text" id="trainer" class="form-control" formControlName="trainer">
-            <div class="alert alert-danger" *ngIf="submitted && f.trainer.errors">
+            <input required type="text" id="trainer" class="form-control" formControlName="trainer" value="{{this.authService.user.userName}}">
+            <!-- <div class="alert alert-danger" *ngIf="submitted && f.trainer.errors">
               <div *ngIf="f.trainer.errors.required">Треньорът е задължително поле!</div>
-            </div>
+            </div> -->
           </div><br/>
 
           <div class="container-form-btn">
             <div class="wrap-form-btn">
               <div class="form-bgbtn"></div>
               <button class="form-btn">
-                  Запази Тренировката
+                  Продължи
               </button>
             </div>
           </div>

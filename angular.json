@@ -24,7 +24,9 @@
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/calendar-master/calendarScript.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -12,6 +12,28 @@
           <br/>
           <h1>Предстоящите ви тренировки:</h1> 
                 <hr/>
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Час</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Тренировка</th>
+                        <th scope="col">Треньор</th>
+                        <th scope="col">Продължителност</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let workout of userWorkouts">
+                        <tr  [ngClass]="{'bg-danger': workout.deleted}">
+                        <td>{{workout.time}}</td>
+                        <td>{{workout.date}}</td>
+                        <td>{{workout.name}}</td>
+                        <td>{{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</td>
+                        <td>{{workout.duration}} <span *ngIf="workout.deleted" style="color: red; font-weight: bold">ОТМЕНЕНА!</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+<!-- 
                 <div class="row">
                     <div class="col-md-5" *ngFor="let workout of userWorkouts">
                         <div class="well hoverwell thumbnail">
@@ -22,7 +44,7 @@
                             <div>Час: {{workout.time}}</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@
           </span>
 
 					<div class="wrap-input">
-            <label for="email">Мейл: </label>
+            <label for="email">* Мейл: </label>
             <input required name="email" type="text" id="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.email.errors">
               <div *ngIf="f.email.errors.required">Мейлът е задължително поле!</div>
@@ -23,7 +23,7 @@
           </div>
 
           <div class="wrap-input">
-            <label for="firstName">Име: </label>
+            <label for="firstName">* Име: </label>
             <input required name="firstname" type="text" id="firstName" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.firstName.errors">
               <div *ngIf="f.firstName.errors.required">Името е задължително поле!</div>
@@ -31,7 +31,7 @@
           </div>   
 
           <div class="wrap-input">
-            <label for="lastName">Фамилия: </label>
+            <label for="lastName">* Фамилия: </label>
             <input required type="text" id="lastName" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.lastName.errors">
               <div *ngIf="f.lastName.errors.required">Фамилията е задължително поле!</div>
@@ -39,7 +39,7 @@
           </div>
 
           <div class="wrap-input">
-            <label for="username">Потребителско име: </label>
+            <label for="username">* Потребителско име: </label>
             <input required type="text" id="username" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.username.errors">
               <div *ngIf="f.username.errors.required">Потребителското име е задължително поле!</div>
@@ -47,13 +47,22 @@
           </div>
 
           <div class="wrap-input">
-            <label for="password">Парола: </label>
+            <label for="password">* Парола: </label>
             <input required type="password" id="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
             <div class="alert alert-danger" *ngIf="submitted && f.password.errors">
               <div *ngIf="f.password.errors.required">Паролата е задължително поле!</div>
-              <!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
+               <div *ngIf="f.password.errors.minlength">Паролата трябва да е поне 6 символа.</div> 
             </div>
           </div>
+
+          <div class="wrap-input">
+              <label for="repeatPassword">* Повторна парола: </label>
+              <input required type="password" id="repeatPassword" class="form-control" formControlName="repeatPassword" [ngClass]="{ 'is-invalid': submitted && f.repeatPassword.errors }">
+              <div class="alert alert-danger" *ngIf="submitted && f.repeatPassword.errors">
+                <div *ngIf="f.repeatPassword.errors.required">Повторната парола е задължително поле!</div>
+                <div *ngIf="f.repeatPassword?.errors?.matchOther">Двете пароли не съвпадат!</div>
+              </div>
+            </div>
 
           <div class="wrap-input">
             <label for="phone">Телефонен номер: </label>

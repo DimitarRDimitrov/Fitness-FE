@@ -24,18 +24,16 @@
                             <td>{{workout.date}} </td>
                             <td>{{workout.time}} </td>
                             <td>{{workout.name}} </td>
-                            <td><button class="btn" [ngClass]="workout.id === workoutParticipantsId ? 'active' : ''"  (click)="findParticipants(workout.id)">Провери участниците</button></td>
+                            <td><button class="btn btn-primary" [ngClass]="workout.id === workoutParticipantsId ? 'active' : ''"  (click)="findParticipants(workout.id)">Провери участниците</button></td>
                         </tr>
                     </tbody>
                 </table>
-                <table class="participantsList">
-                    <thead><strong>Списък на участниците</strong></thead>
-                    <tr *ngFor="let participant of participants">
-                        <td>{{participant?.firstName}} {{participant?.lastName}}</td>
-                    </tr>
+                <div class="participantsList"> <h4><strong>Списък на участниците</strong></h4>
+                    <ol *ngFor="let participant of participants">
+                        <li>{{participant?.firstName}} {{participant?.lastName}}</li>
+                    </ol>
                     <div *ngIf="!participants?.length && clicked">Няма участници!</div>
-                </table>
-                
+                </div>
             </div>
         </div>
     </div>

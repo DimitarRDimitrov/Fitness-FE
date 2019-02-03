@@ -12,8 +12,9 @@ export class Workout {
     public workoutType: WorkoutType;
     public deleted: boolean;
     public applicants: Array<User>;
+    public room: any;
 
-    constructor(name: string, duration: number, trainer: any, date: string, time: string, capacity: number, spaceRemaining: number, workoutType: WorkoutType, deleted: boolean, applicants: Array<User>) {
+    constructor(name: string, duration: number, trainer: any, date: string, time: string, capacity: number, spaceRemaining: number, workoutType: WorkoutType, deleted: boolean, applicants: Array<User>, room: any) {
         this.name = name;
         this.duration = duration;
         this.trainer = trainer;
@@ -24,6 +25,7 @@ export class Workout {
         this.workoutType = workoutType;
         this.deleted = deleted;
         this.applicants = applicants;
+        this.room = room;
     }
 
 }

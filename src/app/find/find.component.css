@@ -30,10 +30,13 @@ body, html {
     display: inline-block;
 }
 
-.participantsList
-{
-    margin-top: 20px;
-    float: right;
+.participantsList{
+    margin: 1% 0 0 10%;
+    float: left;
+}
+
+.workoutsList {
+    float: left;
 }
 
 td

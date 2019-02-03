@@ -9,7 +9,34 @@
         <div class="container">
             <div class="wrapper">
                 <h1>Създадени от <strong>{{this.auth.user.userName}}</strong> тренировки</h1> 
-                <div class="row">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Час</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Тренировка</th>
+                        <th scope="col">Треньор</th>
+                        <th scope="col">Продължителност</th>
+                        <th scope="col">Оставащи места</th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let workout of workouts">
+                        <tr>
+                        <td>{{workout.time}}</td>
+                        <td>{{workout.date}}</td>
+                        <td>{{workout.name}}</td>
+                        <td>{{workout.trainer?.firstName + ' ' + workout.trainer?.lastName}}</td>
+                        <td>{{workout.duration}}</td>
+                        <td>{{workout?.spaceRemaining}}/{{workout?.capacity}}</td>
+                        <td>                                
+                            <button (click)="deleteWorkout(workout.id)" class="btn btn-primary glyphicon glyphicon-remove">&nbsp;Изтрий!</button>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="row">
                     <div *ngFor="let workout of workouts" class="col-md-4">
                         <div class="well hoverwell thumbnail"> 
                             <button (click)="deleteWorkout(workout.id)" class="btn btn-primary glyphicon glyphicon-remove">&nbsp;Изтрий!</button>
@@ -21,7 +48,7 @@
                             <div>Оставащи места: {{workout?.spaceRemaining}}/{{workout?.capacity}}</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

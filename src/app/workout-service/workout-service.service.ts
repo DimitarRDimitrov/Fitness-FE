@@ -42,10 +42,10 @@ export class WorkoutServiceService {
         return this.http.post<boolean>(apiUrl, null).toPromise();
     }
 
-    createWorkout(name, workoutType, duration, capacity, date, time, trainerUsername, dateTo) {
+    createWorkout(name, workoutType, roomName, duration, capacity, date, time, trainerUsername, dateTo): Promise<any> {
         let apiUrl = `${this.apiRoot}/workouts/create`;
-        return this.http.post<boolean>(apiUrl, {name, workoutType, duration, capacity, date, time, trainerUsername, dateTo})
-        .toPromise().then(any => this.router.navigateByUrl("/workouts"));
+        return this.http.post<boolean>(apiUrl, {name, workoutType, roomName, duration, capacity, date, time, trainerUsername, dateTo})
+        .toPromise();
     }
 
     getWorkoutParticipants(workoutId: number) {
@@ -56,5 +56,10 @@ export class WorkoutServiceService {
     deleteWorkout(workoutId: number){
         let apiUrl = `${this.apiRoot}/workouts/delete?workoutId=${workoutId}`;
         return this.http.post<boolean>(apiUrl, null).toPromise();
+    }
+
+    getRoomWorkouts(roomName: String, date: String){
+        let apiUrl = `${this.apiRoot}/workouts/find/${roomName}?date=${date}`;
+        return this.http.get<Workout[]>(apiUrl).toPromise();
     }
 }

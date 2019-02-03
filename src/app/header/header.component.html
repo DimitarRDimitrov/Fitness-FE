@@ -40,7 +40,7 @@
       </ul>
       <ul *ngIf="authenticated" class="nav navbar-nav navbar-right">
         <li [routerLinkActive]="['active']"><a routerLink="/profile">
-          <span *ngIf="notification" class="glyphicon glyphicon-bell" style="margin-right: 10px"></span>Потребителски акаунт</a></li>
+          <span *ngIf="notification" class="glyphicon glyphicon-bell" style="margin-right: 10px"></span>Влезли сте като {{this.userFirstName}}</a></li>
         <li><a (click)="logoutUser()" routerLink="/">Изход</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

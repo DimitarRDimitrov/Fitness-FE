@@ -1,8 +1,10 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { WorkoutServiceService } from '../workout-service/workout-service.service';
 import { AuthService } from '../auth.service';
 import { WorkoutTypeService } from '../workout-service/workout-type.service';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { RoomService } from '../workout-service/room.service';
+import { CreateWorkoutParentService } from '../create-workout-parent.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-workout',
@@ -14,11 +16,13 @@ export class CreateWorkoutComponent implements OnInit {
   authenticated: boolean;
   isAdmin: boolean;
   workoutTypes: string[];
+  rooms: string[];
   createWorkoutForm: FormGroup;
   submitted: boolean;
 
-  constructor(private workoutService: WorkoutServiceService, private authService: AuthService,
-              private workoutTypeService: WorkoutTypeService, private formBuilder: FormBuilder) {
+  constructor(public authService: AuthService, private workoutTypeService: WorkoutTypeService, 
+              private formBuilder: FormBuilder, private roomService: RoomService,
+              private createWorkoutParent: CreateWorkoutParentService, private router: Router) {
   }
 
   ngOnInit() {
@@ -27,29 +31,36 @@ export class CreateWorkoutComponent implements OnInit {
     this.authService.userIsAdmin;
     this.workoutTypeService.getWorkoutTypes()
     .then(data => this.workoutTypes = data);
+    this.roomService.getRooms()
+    .then(data => this.rooms = data);
     this.createWorkoutForm = this.formBuilder.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
-      duration: ['', Validators.required],
+      room: ['', Validators.required],
       capacity: ['', Validators.required],
       date: ['', Validators.required],
-      toDate: [''],
-      time: ['', Validators.required],
+      // toDate: [''],
       trainer: ['', Validators.required]
     });
   }
 
-  handleValidation(recurring: boolean): void {
-    if (recurring) {
-      //console.log("checked");
-      this.createWorkoutForm.controls.toDate.setValidators(Validators.required);
-    } else {
-      //console.log("unchecked");
-      this.createWorkoutForm.controls.toDate.setValidators(Validators.nullValidator);
-    }
-  
-    this.createWorkoutForm.controls.toDate.updateValueAndValidity();
+  ngAfterContentInit(): void {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
+    this.createWorkoutForm.get("trainer").disable();
   }
+
+  // handleValidation(recurring: boolean): void {
+  //   if (recurring) {
+  //     //console.log("checked");
+  //     this.createWorkoutForm.controls.toDate.setValidators(Validators.required);
+  //   } else {
+  //     //console.log("unchecked");
+  //     this.createWorkoutForm.controls.toDate.setValidators(Validators.nullValidator);
+  //   }
+  
+  //   this.createWorkoutForm.controls.toDate.updateValueAndValidity();
+  // }
 
   // convenience getter for easy access to form fields
   get f() { return this.createWorkoutForm.controls; }
@@ -60,17 +71,23 @@ export class CreateWorkoutComponent implements OnInit {
     if (this.createWorkoutForm.invalid) {
       return;
     }
-    //console.log(this.createWorkoutForm);
 
     const name = this.createWorkoutForm.get('name').value;
     const type = this.createWorkoutForm.get('type').value;
-    const duration = this.createWorkoutForm.get('duration').value;
+    const room = this.createWorkoutForm.get('room').value;
     const capacity = this.createWorkoutForm.get('capacity').value;
     const date = this.createWorkoutForm.get('date').value;
-    const time = this.createWorkoutForm.get('time').value;
     const trainer = this.createWorkoutForm.get('trainer').value;
-    const dateTo = this.createWorkoutForm.get('toDate').value;
+    // const toDate = this.createWorkoutForm.get('toDate').value;
     
-    this.workoutService.createWorkout(name, type, duration, capacity, date, time, trainer, dateTo);
+    this.createWorkoutParent.name.next(name);
+    this.createWorkoutParent.type.next(type);
+    this.createWorkoutParent.room.next(room);
+    this.createWorkoutParent.capacity.next(capacity);
+    this.createWorkoutParent.date.next(date);
+    this.createWorkoutParent.trainer.next(trainer);
+    // this.createWorkoutParent.toDate.next(toDate);
+
+    this.router.navigateByUrl('/workouts/create-finalize');
   }
 }
