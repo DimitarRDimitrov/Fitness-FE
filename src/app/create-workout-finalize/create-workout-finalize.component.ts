@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateWorkoutParentService } from '../create-workout-parent.service';
 import { WorkoutServiceService } from '../workout-service/workout-service.service';
 import { Workout } from '../workout-service/workout';
+import { Router } from '@angular/router';
 
 declare function layOutDay(params: any);
 
@@ -19,8 +20,8 @@ export class CreateWorkoutFinalizeComponent implements OnInit, AfterContentInit 
   workoutsForDateAndRoom: Workout[];
   events: object[];
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder,
-    private workoutService: WorkoutServiceService, public createWorkoutParent: CreateWorkoutParentService) {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private workoutService: WorkoutServiceService, 
+    public createWorkoutParent: CreateWorkoutParentService, private router: Router) {
     this.workoutsForDateAndRoom = [];
     this.events = [];
   }
@@ -57,6 +58,14 @@ export class CreateWorkoutFinalizeComponent implements OnInit, AfterContentInit 
 
   // convenience getter for easy access to form fields
   get f() { return this.createWorkoutFinalizeForm.controls; }
+
+  back() {
+    this.createWorkoutFinalizeForm.controls.duration.setValidators(Validators.nullValidator);
+    this.createWorkoutFinalizeForm.controls.time.setValidators(Validators.nullValidator);
+    this.createWorkoutFinalizeForm.controls.duration.updateValueAndValidity();
+    this.createWorkoutFinalizeForm.controls.time.updateValueAndValidity();
+    this.router.navigateByUrl("/workouts/create")
+  }
 
   createWorkout() {
     this.submitted = true;

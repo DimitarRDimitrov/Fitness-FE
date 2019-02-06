@@ -36,7 +36,8 @@
                         </tr>
                     </thead>
                     <tbody *ngFor="let workout of workouts; let i = index">
-                        <div *ngIf="this.dayOfWeek[i] !== ''">{{this.dayOfWeekAsString(workout.date)}}</div>
+                        <div *ngIf="this.dayOfWeek[i] !== '' && (typeSelected === 'default' || typeSelected === workout.workoutType.name) 
+                        && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)">{{this.dayOfWeekAsString(workout.date)}}</div>
                         <tr *ngIf="(typeSelected === 'default' || typeSelected === workout.workoutType.name) 
                         && (trainerSelected === 'default' || trainerSelected === workout.trainer.userName)">
                         <td>{{workout.time}}</td>

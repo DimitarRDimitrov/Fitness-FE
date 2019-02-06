@@ -35,6 +35,11 @@ export class CreateWorkoutParentService {
       .then(res => {
         if (res) {
           this.showSuccess();
+          this.name.next("");
+          this.type.next("");
+          this.room.next("");
+          this.date.next("");
+          this.capacity.next("");
           this.router.navigateByUrl("/workouts")
         } else {
           this.showError();

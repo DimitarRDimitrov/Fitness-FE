@@ -34,7 +34,7 @@
       </div>
 
 			<div class="wrapper">
-        <form (submit)="createWorkout()" [formGroup]="createWorkoutFinalizeForm">
+        <form [formGroup]="createWorkoutFinalizeForm">
           <span class="form-title">
               Създаване на тренировка в {{this.createWorkoutParent.room.value}}
           </span>
@@ -54,11 +54,18 @@
               <div *ngIf="f.duration.errors.required">Продължителността е задължително поле!</div>
             </div>
           </div><br/>
-
+          <div class="container-form-btn">
+            <div class="wrap-form-btn">
+              <div class="form-bgbtn" style="background: #515c6d;"></div>
+              <button class="form-btn" (click)="back()">
+                Обратно
+              </button>
+            </div>
+          </div>
           <div class="container-form-btn">
             <div class="wrap-form-btn">
               <div class="form-bgbtn"></div>
-              <button class="form-btn">
+              <button class="form-btn" (click)="createWorkout()">
                   Запази Тренировката
               </button>
             </div>

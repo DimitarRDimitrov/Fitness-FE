@@ -37,11 +37,11 @@ export class DeleteComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success('', 'Workout Deleted Sucessfully!');
+    this.toastr.success('', 'Успешно изтрита тренировка!');
   }
 
   showError() {
-    this.toastr.error('You cannot delete this workout!', 'Workout Deletion Failed!');
+    this.toastr.error('Не можете да изтриете тази тренировка!', 'Изтриването се провали!');
   }
 
   deleteWorkout(workoutId: number) {

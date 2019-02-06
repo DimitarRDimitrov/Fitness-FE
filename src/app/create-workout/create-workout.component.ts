@@ -48,6 +48,12 @@ export class CreateWorkoutComponent implements OnInit {
     //Called after ngOnInit when the component's or directive's content has been initialized.
     //Add 'implements AfterContentInit' to the class.
     this.createWorkoutForm.get("trainer").disable();
+
+    this.createWorkoutForm.controls.name.setValue(this.createWorkoutParent.name.value);
+    this.createWorkoutForm.controls.type.setValue(this.createWorkoutParent.type.value);
+    this.createWorkoutForm.controls.room.setValue(this.createWorkoutParent.room.value);
+    this.createWorkoutForm.controls.capacity.setValue(this.createWorkoutParent.capacity.value);
+    this.createWorkoutForm.controls.date.setValue(this.createWorkoutParent.date.value);
   }
 
   // handleValidation(recurring: boolean): void {
@@ -77,7 +83,7 @@ export class CreateWorkoutComponent implements OnInit {
     const room = this.createWorkoutForm.get('room').value;
     const capacity = this.createWorkoutForm.get('capacity').value;
     const date = this.createWorkoutForm.get('date').value;
-    const trainer = this.createWorkoutForm.get('trainer').value;
+    const trainer = this.authService.user.userName;
     // const toDate = this.createWorkoutForm.get('toDate').value;
     
     this.createWorkoutParent.name.next(name);
